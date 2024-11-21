@@ -7,7 +7,7 @@ import './App.css'
 export default function App() {
   let menuOptions = [
     {icon: <i className="fa-solid fa-house"></i>, text: "Dashboard"},
-    {icon: <i className="fa-solid fa-folder-open"></i>, text:"Homework"}
+    {icon: <i className="fa-solid fa-scroll"></i>, text:"Homework"}
   ]
   const [choice, setChoice] = useState<string>('Dashboard')
 
@@ -23,5 +23,3 @@ export default function App() {
     </div>
   )
 }
-
-
