@@ -1,3 +1,8 @@
 export default function Lecture(){
-    return <h1>hi</h1>
+    return (
+        <div className='lecture-div'>
+            <h1>LECTURE</h1>
+            <p>On this page you will find lecture recordings and slides.</p>
+        </div>
+    )
 }
