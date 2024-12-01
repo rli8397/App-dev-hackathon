@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import './Posts.css';
 import Popup from './Popup'
 import './Posts.css'
-
+import HomeworkSubmissonForm from '../../Pages/Homework/HomeworkSubmissionForm';
+import SubmissionViewer from '../../Pages/Homework/SubmissionViewer';
 async function getRequest(thisPostType: String) {
     const response = await fetch(`http://127.0.0.1:8000/posts?postType=${thisPostType}`, {
         method: 'GET',
@@ -45,12 +46,26 @@ async function patchRequest (thisId: number, thisTitle:string, thisDescription: 
     return await response.json()
 }
 
-async function homeworkSubmission (thisId: number) {
-    const response = await fetch('')
+async function submitHomework (hwId:number, studentId: number, studentName: string, submission: string) {
+    const response = await fetch('http://127.0.0.1:8000/add-homeworkSubmission', {
+        method: "POST",
+        body: JSON.stringify({
+            hwId: hwId,
+            studentId: studentId,
+            name: studentName,
+            submission: submission
+          }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+
+    return await response.json()
 }
 
-function FormatPost({ data, rerender }: { data: any; rerender: () => void }) {
+function FormatPost({ data, rerender, view, token }: { data: any; rerender: () => void; view:string; token:any; }) {
     const [showAdd, setShowAdd] = useState<boolean>(false);
+    const [showSubmissions, setShowSubmissions] = useState<boolean>(false);
 
     const handlePostClick = (newTitle: string, newDescription: string) => {
         patchRequest(data.id, newTitle, newDescription);
@@ -83,18 +98,39 @@ function FormatPost({ data, rerender }: { data: any; rerender: () => void }) {
                     <p>{data.date}</p>
                 </div>
             </div>
+            
+            {/* Button to see submissions */}
+            {view === 'Teacher' && data.postType === 'homework' && (
+                        <button 
+                            id='see-submissions'
+                            className='button-style'
+                            onClick={()=>{setShowSubmissions(true)}}
+                        >Show Submissions</button>)}
 
-            {/* Popup for editing */}
-            {showAdd && (
-                <div className='edit-popup'><Popup
-                    title="Edit Post"
-                    setShowAdd={setShowAdd} // Close the popup by updating state
-                    handleSubmit={(title, description) => {
-                        handlePostClick(title, description);
-                    }}
-                /></div>
+            {showSubmissions && (
+                <SubmissionViewer setShowSubmissions={setShowSubmissions} hwId={data.id}/>
             )}
-
+            {/* Popup for editing */}
+            {(showAdd && view === 'Teacher') && (
+                <div>
+                    <Popup
+                        title="Edit Post"
+                        setShowAdd={setShowAdd} // Close the popup by updating state
+                        handleSubmit={(title, description) => {
+                            handlePostClick(title, description);
+                    }}
+                    />
+                </div>
+            )}
+            {(showAdd && view == 'Student' && data.postType === 'homework') && (
+                <div>
+                    <HomeworkSubmissonForm 
+                        title="Submit Homework" 
+                        setShowAdd={setShowAdd} 
+                        handleSubmit={(submission)=> {submitHomework(data.id, token.id, token.name, submission)}}
+                    />
+                </div>
+            )}
             {/* Delete button with click prevention */}
             
         </div>
@@ -102,7 +138,7 @@ function FormatPost({ data, rerender }: { data: any; rerender: () => void }) {
 }
 
 
-export default function Posts({ postType, rerender }: {postType: String; rerender: number;}) {
+export default function Posts({ postType, rerender, view, token }: {postType: String; rerender: number; view: string; token:any;}) {
     const [data, setData] = useState<any>(null); 
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
@@ -127,13 +163,14 @@ export default function Posts({ postType, rerender }: {postType: String; rerende
         <>
             {data.length > 0 ? 
                 <div>
-                <h1>Lastest {postType}</h1>
-                <FormatPost data={data[0]} rerender={()=>setDeleteRender(deleteRender + 1)}/>
-                
-                <h1>Previous {postType}s</h1>
-                {data.slice(1).map((e:any)=> 
-                    <FormatPost data={e} rerender={()=>setDeleteRender(deleteRender + 1)}/>
-                )}
+
+                    <h1>Lastest {postType}</h1>
+                    <FormatPost data={data[0]} rerender={()=>setDeleteRender(deleteRender + 1)} view={view} token={token}/>
+                    
+                    <h1>Previous {postType}s</h1>
+                    {data.slice(1).map((e:any)=> 
+                        <FormatPost data={e} rerender={()=>setDeleteRender(deleteRender + 1)} view={view} token={token}/>
+                    )}
                 
                 </div>
             :

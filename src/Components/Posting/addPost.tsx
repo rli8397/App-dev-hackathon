@@ -27,7 +27,6 @@ type Props = {
 }
 export default function AddPost({ postType, token, rerenderTracker, handleRerender }: Props) {
     const [showAdd, setShowAdd] = useState<boolean>(false);
-    const [addMsg, setAddMsg] = useState<string>('');
 
     return (
         <div className="homework-submit">
@@ -36,7 +35,6 @@ export default function AddPost({ postType, token, rerenderTracker, handleRerend
                 className="homework-input button-style"
                 onClick={() => {
                     setShowAdd(true);
-                    setAddMsg('');
                     document.querySelector('.page-content')?.classList.add('fade');
                 }}
             >

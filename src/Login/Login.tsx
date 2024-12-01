@@ -25,6 +25,7 @@ export default function Login({ setToken }: Props) {
   const [loginMsg, setLoginMsg] = useState<string>('')
   const [passwordError, setPasswordError] = useState<string>('Passwords must match');
   const [pageState, setPageState] = useState<string> ('Create an account')
+  const [id, setId] = useState<number> (1);
   const handleSubmit = async()=> {
   
   if ((pageState === 'Login' && (email === '' || name === '' || password === '' || clubRole === ''))
@@ -38,9 +39,11 @@ export default function Login({ setToken }: Props) {
       // })
       let token = {
         'name': name,
+        'id': 0,
         'email': email,
         'password': password
       }
+      setId(id + 1)
       setToken(token)
     } else {
       setLoginMsg('')

@@ -21,7 +21,7 @@ app.add_middleware(
 )
 
 # this is how we created our tables
-# #
+#
 # c = sqlite3.connect('server.db').cursor()
 # c.execute("""CREATE TABLE lectures (
 #                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -41,7 +41,7 @@ app.add_middleware(
 #                   date text
 #             )""")
 # c.execute("""CREATE TABLE homeworkSubmissions (
-#                 homeworkId
+#                 homeworkId int, 
 #                 studentId int,
 #                 name text,
 #                 submissions text
@@ -49,7 +49,7 @@ app.add_middleware(
 
 postsFields = ['id', 'postType', 'title', 'description', 'sender', 'date']
 lectureFields = ['id', 'title', 'description', 'slidesLink', 'zoomLink', 'zoomPassword', 'date']
-homeworkFields = ['id', 'name', 'submissions']
+homeworkFields = ['id', 'studentId', 'name', 'submissions']
 
 # helper methods
 
@@ -108,7 +108,7 @@ class ToRemove(BaseModel):
 
 class HomeworkSubmission(BaseModel):
     hwId: int
-    id: int
+    studentId: int
     name: str
     submission: str
 
@@ -134,8 +134,8 @@ async def root(e: HomeworkSubmission):
     c = conn.cursor()
 
     #Insert query
-    c.execute("INSERT INTO homeworkSubmissions (id, name, submissions) VALUES(?, ?, ?)", 
-            (e.id, e.name, e.submission))
+    c.execute("INSERT INTO homeworkSubmissions (homeworkId, studentId, name, submissions) VALUES(?, ?, ?, ?)", 
+            (e.hwId, e.studentId, e.name, e.submission))
 
     conn.commit()
     conn.close()
