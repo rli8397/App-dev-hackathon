@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './Posts.css'
-import Popup from './PopUp'
+import Popup from './Popup'
 async function addPost(postType: string, title: string, description: string, name:string ) {
     let date = new Date()
     fetch("http://127.0.0.1:8000/add-post", {

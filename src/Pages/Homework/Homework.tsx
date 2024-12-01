@@ -2,7 +2,7 @@ import Posts from '../../Components/Posting/Posts'
 import { useState } from 'react'
 import AddPost from '../../Components/Posting/addPost'
 import './Homework.css'
-import '../../Components/Posting/PopUp'
+import '../../Components/Posting/Popup'
 type Props = {
     token: Record<string, string>
     view: string

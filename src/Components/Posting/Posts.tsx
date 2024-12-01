@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './Posts.css';
-import Popup from './PopUp'
+import Popup from './Popup'
 import './Posts.css'
 
 async function getRequest(thisPostType: String) {
