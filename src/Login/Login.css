@@ -1,0 +1,108 @@
+:root {
+    --background: rgb(73, 73, 73);
+    --input-focus: #aaa;
+    --error-color: rgb(198, 43, 43);
+}
+
+.login-wrapper {
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.login-form {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background);
+    height: 30em;
+    width: 20em;
+    padding: 4em;
+}
+
+.login-form > button {
+    margin-top: 2em;
+    min-width: 20em;
+    min-height: 3em;
+}
+
+.page-state-btn {
+    position:fixed;
+    left:0em;
+    top: 1em; 
+    border-color: transparent;
+    width: 15em;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.login-header {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/*For any typing input sections*/
+.input-section {
+    padding-top: 20px;
+}
+
+.input-section > select {
+    width: 20em;
+    height: 2em;
+}
+
+.input-field {
+    position: relative;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.input-field > input,
+.input-field > select {
+    background-color: transparent;
+    border-radius: 3px;
+    appearance: none;
+    outline: none;
+    width: 20em;
+    height: 2em;
+    border: 2px solid #222;
+}
+
+.input-field .placeholder {
+    position: absolute;
+    left: 8px;
+    top: 0;
+    color: #222;
+    transition:
+        top 0.3s ease, 
+        left 0.3s ease,
+        font-size 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.input-field input:valid + .placeholder,
+.input-field input:focus + .placeholder {  
+    top:-12px;
+    font-size:10px;
+    color: var(--input-focus);
+    left: 5px;
+    background: var(--background);
+    padding: 0px 3px;
+}
+
+.input-field input:valid, 
+.input-field input:focus {
+    border-color: var(--input-focus);
+    transition-delay: 0.1s;
+}
+
+.error-status {
+    color: var(--error-color);
+}

@@ -2,6 +2,9 @@
     This will receive a list of objects containing an icon and a string
     each element will represent a different choice
 */
+
+import './SideBar.css'
+
 type Props = { 
     sideBarInfo: {icon:JSX.Element, text: string} [],
     handleChoice: (e: string)=> void

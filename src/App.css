@@ -7,83 +7,43 @@
 body {
   margin:0;
   overflow: hidden;
+  overflow-y: scroll;
+  min-height: 100%;
+  background-color: var(--background-color);
 }
 
 /*This sets some properties of the whole screen*/
 #root {
-  height: 100vh;
-  width:100vw;
-  background-color: var(--background-color);
-  overflow:hidden;
+  min-height: 100%;
+  min-width:100%;
 }
 
 p {
   color: var(--text-color);
 }
 
-.side-bar {
-  width: 5em;
-  height: 100vh;
-  background-color: rgb(0, 0, 0);
-  opacity: 0.8;
-  transition: 0.35s ease-out;
-}
-
-.side-bar-content {
-  font-size: 1.5em;
-}
-
-.side-bar-element {
-  display:flex;
-  padding: 0.5em 1em;
-}
-.side-bar-text {
-  padding: 0em 1.5em;
-  opacity: 0;
-  transition: 0.2s;
-  transition-delay: 0.35s;
-}
-
-.side-bar:hover {
-  width: 15em; 
-  opacity: 1;
-}
-
-.side-bar:hover .side-bar-text {
-  opacity: 1;
-}
-
-.side-bar:not(:hover) .side-bar-text {
-  transition: none; 
-  opacity: 0;
-  visibility: hidden;
-}
-
-.side-bar-element:hover {
-  background-color:rgba(121, 119, 119, 0.358);
-  cursor: pointer;
-  box-shadow: 0px 0px 10px rgb(146, 146, 146);
-}
-
-.page {
-  display:flex;
-  color:white;
-}
-
 .page-content{
-  width: 60em;
-  height: 100vh;
-  position: absolute; 
-  left: 15em;
-  padding: 3em;
-  display:flex; 
+  display: flex;
   justify-content: center;
-}
-
-.homework-div {
-
+  width: 100vw;
+  height: 100vh;
+  color:white;
+  z-index: 1;
 }
 
 .lecture-div{
   text-align: center;
+}
+
+.button-style {
+  border-radius: 1.5em;
+  background-color:transparent;
+  color: white;
+}
+
+.view-toggle {
+  position: absolute; 
+  left: 8em;
+  top: 2em;
+  z-index: 0;
 }
