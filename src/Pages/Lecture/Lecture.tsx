@@ -243,7 +243,7 @@ export default function Lecture(){
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        Lecture Video
+                        Lecture (Zoom) Video
                     </a>
                 </li>
          </ul>
