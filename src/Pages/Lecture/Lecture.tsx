@@ -6,6 +6,7 @@ export default function Lecture(){
             <p>On this page you will find lecture recordings and slides.</p>
         <div className="lecture-section">
             <h2>Lecture 1</h2>
+            <h3>Introduction: Meet your Mentors</h3>
             <ul>
                 <li>
                     <a
@@ -26,6 +27,7 @@ export default function Lecture(){
 
         <div className="lecture-section">
             <h2>Lecture 2</h2>
+            <h3>Git, HTML, & CSS</h3>
             <ul>
                 <li>
                     <a
@@ -51,6 +53,7 @@ export default function Lecture(){
 
         <div className="lecture-section">
             <h2>Lecture 3</h2>
+            <h3>Intermediate Git, CSS, & JavaScript</h3>
             <ul>
                 <li>
                     <a
@@ -76,6 +79,7 @@ export default function Lecture(){
 
         <div className="lecture-section">
             <h2>Lecture 4</h2>
+            <h3>JavaScript, Async / Await, & TypeScript</h3>
             <ul>
                 <li>
                     <a
@@ -101,6 +105,7 @@ export default function Lecture(){
 
         <div className="lecture-section">
             <h2>Lecture 5</h2>
+            <h3>React</h3>
             <ul>
                 <li>
                     <a
@@ -125,6 +130,7 @@ export default function Lecture(){
 
         <div className="lecture-section">
             <h2>Lecture 6</h2>
+            <h3>State in React</h3>
             <ul>
                 <li>
                     <a
@@ -150,6 +156,7 @@ export default function Lecture(){
 
         <div className="lecture-section">
             <h2>Lecture 7</h2>
+            <h3>Advanced React Concepts</h3>
             <ul>
                 <li>
                     <a
@@ -175,6 +182,7 @@ export default function Lecture(){
 
         <div className="lecture-section">
             <h2>Lecture 8</h2>
+            <h3>Intro to APIs and FastAPI</h3>
             <ul>
                 <li>
                     <a
@@ -200,6 +208,7 @@ export default function Lecture(){
 
         <div className="lecture-section">
             <h2>Lecture 9</h2>
+            <h3>Backend Development with SQLite</h3>
             <ul>
                 <li>
                     <a
@@ -225,6 +234,7 @@ export default function Lecture(){
 
         <div className="lecture-section">
             <h2>Lecture 10</h2>
+            <h3>React Fast API Twitter Clone</h3>
             <ul>
 
                 <li>
