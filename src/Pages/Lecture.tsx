@@ -72,6 +72,172 @@ export default function Lecture(){
          </ul>
         </div>
 
+
+        <div className="lecture-section">
+            <h2>Lecture 4</h2>
+            <ul>
+                <li>
+                    <a
+                        href="https://docs.google.com/presentation/d/14ooPTPyM4QZPWMBq2sg4NypMQZAHQ4rY5n6CUn6l7zI/edit?usp=sharing"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Lecture Slides
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="https://umd.zoom.us/rec/share/Rl_BFUApl78S6omhJPRFLdM2bqNJOC5NWiJkWk9nDVe9G6wf54-EZCFnD8WbokIK.aHGXOgs6ZGmg7pad?startTime=1729033180000"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Lecture Video
+                    </a>
+                </li>
+         </ul>
+        </div>
+
+
+        <div className="lecture-section">
+            <h2>Lecture 5</h2>
+            <ul>
+                <li>
+                    <a
+                        href="https://docs.google.com/presentation/d/1YzEswdGs5zqZMaK8zPCaJl8PiiFFOYDnz2QVHLDAxak/edit?usp=sharing"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Lecture Slides
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="https://umd.zoom.us/rec/share/feRHep0QqN7yi6SJz8PwaQ6LrFP8BRJ96LSAf2lEhIxLeojaea27pPct65YuCS1-.sj_MOivR-ZpXWfqg?startTime=1729638243000"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Lecture Video
+                    </a>
+                </li>
+         </ul>
+        </div>
+
+        <div className="lecture-section">
+            <h2>Lecture 6</h2>
+            <ul>
+                <li>
+                    <a
+                        href="https://docs.google.com/presentation/d/1GTiIFoT1EDLZ0Y9SC6G1f9c1-YZoMM-NMLOC8-0_-lI/edit?usp=sharing"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Lecture Slides
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="https://umd.zoom.us/rec/share/XEmxDC_2pexSnHkmHWfE2u828DWpQlhQNtxyV9gpkK1yCh0Hnj6M1A2Sdji7Z9DM.valW4Jz4qkEF0I0H?startTime=1730243323000"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Lecture Video
+                    </a>
+                </li>
+         </ul>
+        </div>
+
+
+        <div className="lecture-section">
+            <h2>Lecture 7</h2>
+            <ul>
+                <li>
+                    <a
+                        href="https://docs.google.com/presentation/d/15Na7t8cIfSIBrwDEqQ7BOuvSB5UykhBfiqQstg7lqsg/edit?usp=sharing"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Lecture Slides
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="https://umd.zoom.us/rec/share/1pUBQsed08aIyCtsS3NH3ZVDB23Uuco46RHwzb-M_qNZfkJgdgUOYx4krB2bQV2e.4QqU0j8o1gXApSNq?startTime=1730851409000"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Lecture Video
+                    </a>
+                </li>
+         </ul>
+        </div>
+
+
+        <div className="lecture-section">
+            <h2>Lecture 8</h2>
+            <ul>
+                <li>
+                    <a
+                        href="https://docs.google.com/presentation/d/1LqK53V6loCTSSouDKSLi0ghzEUEeoyfh49JIIpD04OQ/edit?usp=sharing"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Lecture Slides
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="https://umd.zoom.us/rec/share/NW59HtWPrUYmRUSeorA0w8KMK-Gy9nqpLxNg1cNvrEqsuPZPaPfc1KZvhJHVqiS0.PAhYdSI7BvAl57K-"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Lecture Video
+                    </a>
+                </li>
+         </ul>
+        </div>
+
+
+        <div className="lecture-section">
+            <h2>Lecture 9</h2>
+            <ul>
+                <li>
+                    <a
+                        href="https://docs.google.com/presentation/d/1l67FCwXIndPk7by-60jXrStApbmZtccyJQhMuFQl4-c/edit?usp=sharing"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Lecture Slides
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="https://umd.zoom.us/rec/share/SWr8PIE4MVLac8AzSP7EmW_AM9N8-sjc68MYy2F2M87OY3WhmFtOGQfPxrfk2lS6.Co_GWJZzm0Tdkbe2?startTime=1732063816000"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Lecture Video
+                    </a>
+                </li>
+         </ul>
+        </div>
+
+
+        <div className="lecture-section">
+            <h2>Lecture 10</h2>
+            <ul>
+
+                <li>
+                    <a
+                        href="https://umd.zoom.us/rec/share/F1ZDr9KfH66reoF2jEuc7oBpGe-JLRhWeE6mPrNep84GN0NL3PG3sWJTz7FVEP7y.tpIzM4OLwsDI9ef1?startTime=1732665622000"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Lecture Video
+                    </a>
+                </li>
+         </ul>
+        </div>
+
     </div>
     );
 }
