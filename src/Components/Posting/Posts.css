@@ -105,3 +105,12 @@
 #add-error-msg {
   color: red !important;
 }
+
+#see-submissions {
+  height: 2em;
+  width: auto;
+  margin-top: 2em;
+  left: 0em;
+  cursor: pointer;
+  z-index: 1;
+}

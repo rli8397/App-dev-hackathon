@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './Posts.css'
 
 type Props = {
@@ -7,7 +6,6 @@ type Props = {
     handleSubmit: (title: string, description: string)=> void
 }
 export default function Popup({ title, setShowAdd, handleSubmit }: Props) {
-    const [addMsg, setAddMsg] = useState<string>('');
 
     return (
         <div className="blur-background">
@@ -27,8 +25,6 @@ export default function Popup({ title, setShowAdd, handleSubmit }: Props) {
 
                                 <h2>{title}</h2>
 
-                                {/* An error message will appear if one of the fields is empty */}
-                                <p id="add-error-msg">{addMsg}</p>
                             </div>
 
                             {/* These are input fields */}

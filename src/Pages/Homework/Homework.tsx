@@ -25,18 +25,10 @@ export default function Homework({ token, view }: Props){
                     {view == 'Teacher' ? 
                         <AddPost postType="homework" token={token} rerenderTracker={rerenderTracker} handleRerender={handleRerender}/>
                     : 
-                                
-                        <div className='homework-submit'>
-                            {/* this is the student view */}
-                            <h2>Submit Homework</h2>
-                            <textarea placeholder='Enter Homework' className='homework-input description'/>
-                            <button className='homework-input button-style' onClick={()=>{
-                                
-                            }}>Submit</button>
-                        </div>
+                        <div></div>
                     }
                 </div>
-                <Posts postType='homework' rerender={rerenderTracker}/>
+                <Posts postType='homework' rerender={rerenderTracker} view={view} token={token}/>
             </div>
         </div>
     )

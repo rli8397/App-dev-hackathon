@@ -21,3 +21,29 @@
 .description {
   height: 10em;
 }
+
+.submission-div {
+  display: flex;
+  width: 100%;
+}
+
+.submission-div > button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  margin-left: 2em;
+}
+
+.submission-div > button:hover {
+  color: rgb(72, 218, 255);
+  cursor: pointer;
+}
+.submission-text {
+  display: none;
+}
+.submission-text.show-submission {
+  display:block;
+  padding: 1em;
+  background-color: rgb(80, 80, 80);
+}
+
