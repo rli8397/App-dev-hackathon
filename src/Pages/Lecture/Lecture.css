@@ -1,0 +1,16 @@
+.lecture-div {
+    padding: 2em;
+  }
+  .lecture-section {
+    margin-left: 4em;
+  }
+  
+  .lecture-section {
+    display: block;
+    width: 100%;
+    height: 2.5em;
+    margin: 1.5em 0em 0em 0em;
+    resize: vertical;
+    cursor: pointer;
+  }
+  
