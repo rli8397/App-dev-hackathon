@@ -1,4 +1,3 @@
-import React from 'react';
 import './Login.css';
 import { useState } from 'react';
 
@@ -58,7 +57,7 @@ export default function Login({ setToken, setView }: Props) {
           })
         })
 
-        let token = await reponse.json()
+        await response.json()
         setView(clubRole)
         setToken({
             'name': name,

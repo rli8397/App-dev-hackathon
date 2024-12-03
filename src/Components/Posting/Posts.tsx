@@ -4,6 +4,7 @@ import Popup from './Popup'
 import './Posts.css'
 import HomeworkSubmissonForm from '../../Pages/Homework/HomeworkSubmissionForm';
 import SubmissionViewer from '../../Pages/Homework/SubmissionViewer';
+
 async function getRequest(thisPostType: string, title: string = '') {
     const params = new URLSearchParams();
     params.append('postType', thisPostType);
@@ -125,12 +126,12 @@ function FormatPost({ data, rerender, view, token }: { data: any; rerender: () =
                     />
                 </div>
             )}
-            {(showAdd && view == 'Student' && data.postType === 'homework') && (
+            {(showAdd && view == 'Member' && data.postType === 'homework') && (
                 <div>
                     <HomeworkSubmissonForm 
                         title="Submit Homework" 
                         setShowAdd={setShowAdd} 
-                        handleSubmit={(submission)=> {submitHomework(data.id, token.id, token.name, submission)}}
+                        handleSubmit={(submission)=> {submitHomework(data.id, token.UID, token.name, submission)}}
                     />
                 </div>
             )}
@@ -141,10 +142,9 @@ function FormatPost({ data, rerender, view, token }: { data: any; rerender: () =
 }
 
 
-export default function Posts({ postType, rerender, view, token }: {postType: String; rerender: number; view: string; token:any;}) {
+export default function Posts({ postType, rerender, view, token }: {postType: string; rerender: number; view: string; token:any;}) {
     const [data, setData] = useState<any>(null); 
     const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
     const [deleteRender, setDeleteRender] = useState<number>(0);
 
     async function fetchPosts(postType: string, title: string = '') {

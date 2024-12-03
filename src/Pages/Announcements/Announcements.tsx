@@ -4,7 +4,7 @@ import AddPost from '../../Components/Posting/addPost'
 import './Announcements.css'
 
 type Props = {
-    token: Record<string, string>
+    token: any
     view: string
 }
 export default function Announcements({ token, view }: Props){
@@ -27,7 +27,7 @@ export default function Announcements({ token, view }: Props){
                         <div></div>
                     }
                 </div>
-                <Posts postType='Announcements' rerender={rerenderTracker}/>
+                <Posts postType='Announcements' rerender={rerenderTracker} view={view} token={token}/>
             </div>
         </div>
     )

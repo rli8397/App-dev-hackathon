@@ -22,9 +22,6 @@ export default function SubmissionViewer({ setShowSubmissions, hwId } : {setShow
                 setData(fetchedData);
                 setLoading(false);
             })
-            .catch((err) => {
-                setLoading(false);
-            });
     }, [hwId]);
     
     if (loading) return <div>Loading...</div>;

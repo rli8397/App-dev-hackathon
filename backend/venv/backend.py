@@ -21,7 +21,7 @@ app.add_middleware(
 )
 
 # this is how we created our tables
-#
+
 # c = sqlite3.connect('server.db').cursor()
 # c.execute("""CREATE TABLE lectures (
 #                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -42,7 +42,7 @@ app.add_middleware(
 #             )""")
 # c.execute("""CREATE TABLE homeworkSubmissions (
 #                 homeworkId int, 
-#                 studentId int,
+#                 studentId text,
 #                 name text,
 #                 submissions text
 # )""")
@@ -117,7 +117,7 @@ class ToRemove(BaseModel):
 
 class HomeworkSubmission(BaseModel):
     hwId: int
-    studentId: int
+    studentId: str
     name: str
     submission: str
 
@@ -162,11 +162,10 @@ async def root(email: str, password: str = ''):
 # homework submissions functions / requests
 @app.get('/homeworkSubmissions') 
 async def root(hwId: Annotated[int | None, Query(gt = -1)] = None, name: str | None = None):
-    conditions = queryString({'homeworkId': hwId})
+    conditions, params = queryString({'homeworkId': hwId})
 
-    query = getRequest('*', 'homeworkSubmissions', conditions)
+    query = getRequest('*', 'homeworkSubmissions', conditions, params)
     return queryToJSON(homeworkFields, query)
-
 
 @app.post('/add-homeworkSubmission')
 async def root(e: HomeworkSubmission):
