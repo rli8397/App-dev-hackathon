@@ -23,7 +23,7 @@
 
 .lecture-section {
   background-color: rgba(57, 57, 57, 0.877);
-  padding: 10px 200px;
+  padding: 10px 150px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
@@ -53,13 +53,14 @@
 }
 
 .lecture-section a {
-  text-decoration: none;
+  color: red;
+  text-decoration: underline;
   font-weight: bold;
   transition: color 0.3s ease;
 }
 
 .lecture-section a:hover {
-  color: white;
+  color: black;
 }
 
 .lecture-section {
