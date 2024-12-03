@@ -20,7 +20,7 @@ export default function Announcements({ token, view }: Props){
                       * The following statement will control the condition of whether
                       * it's student or teacher view
                       */}
-                    {view == 'Teacher' ? 
+                    {view == 'Admin' ? 
                         <AddPost postType="Announcements" token={token} rerenderTracker={rerenderTracker} handleRerender={handleRerender}/>
                     : 
                                 

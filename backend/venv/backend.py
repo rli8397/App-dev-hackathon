@@ -46,11 +46,18 @@ app.add_middleware(
 #                 name text,
 #                 submissions text
 # )""")
-
+# c = sqlite3.connect('server.db').cursor()
+# c.execute("""CREATE TABLE students (
+#                 name text,
+#                 email text, 
+#                 UID text, 
+#                 password text, 
+#                 clubRole text
+# )""")
 postsFields = ['id', 'postType', 'title', 'description', 'sender', 'date']
 lectureFields = ['id', 'title', 'description', 'slidesLink', 'zoomLink', 'zoomPassword', 'date']
 homeworkFields = ['id', 'studentId', 'name', 'submissions']
-
+studentFields = ['name', 'email', 'UID', 'password', 'clubRole']
 # helper methods
 
 # this is a helper function to translate query fetches to JSON format
@@ -65,32 +72,34 @@ def queryToJSON(fields: list, query: tuple):
     return result
 
 # this runs getRequests and returns an arrays of json
-def getRequest(columns: str, table: str, conditions: str = ''):
+def getRequest(columns: str, table: str, conditions: str = '', params: tuple = ()):
     conn = sqlite3.connect("server.db")
-    c = conn.cursor()
-    result = []
-    query = f"SELECT {columns} FROM {table}"
-    if (conditions != ''):
-        query += f" WHERE {conditions}"
+    try:
+        c = conn.cursor()
+        query = f"SELECT {columns} FROM {table}"
+        if conditions:
+            query += f" WHERE {conditions}"
+        result = c.execute(query, params).fetchall()
+        return result
 
-    result = c.execute(query).fetchall()
+    except sqlite3.Error as e:
+        # Log the error (optional)
+        return []  # Return an empty array on error
 
-    return result
-
+    finally:
+        conn.close()
 # returns a string with search conditions based on title, sender, and date 
 # this string will be used to put after a WHERE sql statement
 # will receive an array of objects
-def queryString(conditions: dict): 
-    result = ""
+def queryString(conditions: dict):
+    query_parts = []
+    params = []
+    for key, value in conditions.items():
+        if value is not None:
+            query_parts.append(f"{key} = ?")
+            params.append(value)
+    return " AND ".join(query_parts), tuple(params)
 
-    for curr in conditions.keys():
-        if (conditions[curr] != None):
-            result += f" AND {curr}={conditions[curr]}"
-
-    # returns the result with out the first AND (otherwise would look like AND condition1 AND condition2 etc)
-    if len(result) > 5:
-        result = result[5:]
-    return result
 
 # bodies
 
@@ -117,8 +126,40 @@ class PostEdit(BaseModel):
     title: str = ''
     description: str = ''
 
+class StudentBody(BaseModel):
+    name: str = ''
+    email: str = ''
+    UID: str = ''
+    password: str = ''
+    clubRole: str = ''
 
-# homework submissions functions /requests
+@app.post('/add-student')
+async def root(e: StudentBody):
+    #opens database connection
+    conn = sqlite3.connect("server.db")
+    c = conn.cursor()
+
+    #Insert query
+    c.execute("INSERT INTO students (name, email, UID, password, clubRole) VALUES(?, ?, ?, ?, ?)", 
+            (e.name, e.email, e.UID, e.password, e.clubRole))
+
+    conn.commit()
+    conn.close()
+
+    return {'message': 'successfully added'}
+
+@app.get('/get-student/{email}')
+async def root(email: str, password: str = ''):
+    searchInput = {
+        'email': email,
+        'password': password,
+    }
+
+    conditions, params = queryString(searchInput)
+    query = getRequest('*', 'students', conditions, params)
+    return queryToJSON(studentFields, query)
+
+# homework submissions functions / requests
 @app.get('/homeworkSubmissions') 
 async def root(hwId: Annotated[int | None, Query(gt = -1)] = None, name: str | None = None):
     conditions = queryString({'homeworkId': hwId})
@@ -148,19 +189,16 @@ async def root(e: HomeworkSubmission):
 # GET-REQUEST - gets posts from table posts. It receives certain conditions and will return based on them
 # if nothing is received for a certain condition, then just assume anything is fine for that condition 
 @app.get('/posts')
-async def root(postType: str, title: str | None = None, sender: str | None = None, date: str | None = None):
-    #turns search conditions into dictionray
+async def root(postType: str, title: str | None = None):
     searchInput = {
-        'postType': f"'{postType}'",
+        'postType': postType,
         'title': title,
-        'sender': sender,
-        'date': date
     }
 
-    conditions = queryString(searchInput)
-    
-    query = getRequest('*', 'posts', conditions)
+    conditions, params = queryString(searchInput)
+    query = getRequest('*', 'posts', conditions, params)
     return queryToJSON(postsFields, query)
+
     
 # POST REQUEST - adds an post to any page
 @app.post('/add-post')

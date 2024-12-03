@@ -9,17 +9,19 @@ import Announcements from './Pages/Announcements/Announcements'
 import Toggle from './Components/Toggle/Toggle'
 
 export default function App() {
-  const [view, setView] = useState<string>('Teacher');
+  const [choice, setChoice] = useState<string>('Dashboard')
+  const [token, setToken] = useState();
+  const [view, setView] = useState<string>('');
+  const [userAccess, setUserAccess] = useState<string>('')
   let menuOptions = [
     {icon: <i className="fa-solid fa-house"></i>, text: "Dashboard"},
     {icon: <i className="fa-solid fa-folder-open"></i>, text:"Homework"},
     {icon: <i className="fa-solid fa-book"></i>, text: "Lecture"},
     {icon: <i className="fa-solid fa-bullhorn"></i>, text: "Announcements"}
   ]
-  const [choice, setChoice] = useState<string>('Dashboard')
-  const [token, setToken] = useState();
+  
   if (!token) {
-    return <div className="page-content"><Login setToken={(e:any)=>setToken(e)}/></div>
+    return <div className="page-content"><Login setToken={(e:any)=>setToken(e)} setView={(e:string)=>setUserAccess(e)}/></div>
   }
   const pages: {[key: string]: React.ReactNode} = {
     Dashboard: <Dashboard/>,
@@ -31,7 +33,7 @@ export default function App() {
     <div className='page'>
       <SideBar sideBarInfo={menuOptions} handleChoice={(e)=> setChoice(e)}></SideBar>
       <div className='page-content'>{pages[choice]}</div>
-      <div className='view-toggle'><Toggle setView={(e)=>setView(e)}/></div>
+      {userAccess == 'Admin' && <div className='view-toggle'><Toggle setView={(e)=>setView(e)}/></div>}
     </div>
   )
 }

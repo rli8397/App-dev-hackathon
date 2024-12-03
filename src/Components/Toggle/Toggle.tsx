@@ -14,9 +14,9 @@ export default function Toggle({ setView }: Props) {
                 className={`toggle-btn ${toggleState ? 'toggled' : ''}`}
                 onClick={()=>{
                     if (toggleState) {
-                        setView('Teacher')
+                        setView('Admin')
                     } else {
-                        setView('Student')
+                        setView('Member')
                     }
                     setToggleState(!toggleState)
                 }}

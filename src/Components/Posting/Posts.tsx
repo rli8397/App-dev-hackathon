@@ -4,14 +4,17 @@ import Popup from './Popup'
 import './Posts.css'
 import HomeworkSubmissonForm from '../../Pages/Homework/HomeworkSubmissionForm';
 import SubmissionViewer from '../../Pages/Homework/SubmissionViewer';
-async function getRequest(thisPostType: String) {
-    const response = await fetch(`http://127.0.0.1:8000/posts?postType=${thisPostType}`, {
+async function getRequest(thisPostType: string, title: string = '') {
+    const params = new URLSearchParams();
+    params.append('postType', thisPostType);
+    if (title) params.append('title', title);
+
+    const response = await fetch(`http://127.0.0.1:8000/posts?${params.toString()}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
         },
     });
-
     return await response.json();
 }
 
@@ -100,7 +103,7 @@ function FormatPost({ data, rerender, view, token }: { data: any; rerender: () =
             </div>
             
             {/* Button to see submissions */}
-            {view === 'Teacher' && data.postType === 'homework' && (
+            {view === 'Admin' && data.postType === 'homework' && (
                         <button 
                             id='see-submissions'
                             className='button-style'
@@ -111,7 +114,7 @@ function FormatPost({ data, rerender, view, token }: { data: any; rerender: () =
                 <SubmissionViewer setShowSubmissions={setShowSubmissions} hwId={data.id}/>
             )}
             {/* Popup for editing */}
-            {(showAdd && view === 'Teacher') && (
+            {(showAdd && view === 'Admin') && (
                 <div>
                     <Popup
                         title="Edit Post"
@@ -144,42 +147,58 @@ export default function Posts({ postType, rerender, view, token }: {postType: St
     const [error, setError] = useState<string | null>(null);
     const [deleteRender, setDeleteRender] = useState<number>(0);
 
+    async function fetchPosts(postType: string, title: string = '') {
+        setLoading(true); // Start loading
+        const fetchedData = await getRequest(postType, title);
+        setData(fetchedData.reverse()); // Reverse if necessary
+        setLoading(false); // Stop loading
+    }
+    
     useEffect(() => {
-        getRequest(postType)
-            .then((fetchedData) => {
-                setData(fetchedData.reverse());
-                setLoading(false);
-            })
-            .catch((err) => {
-                setError(err.message);
-                setLoading(false);
-            });
+        fetchPosts(postType);
     }, [postType, rerender, deleteRender]);
     
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>Error: {error}</div>;
-
     return (
         <>
-            {data.length > 0 ? 
+            <div className="search-posts-div">
+                <input type="text" id="search-bar" placeholder="Search by title" />
+                <button
+                    onClick={() => {
+                        const titleElement = document.querySelector('#search-bar') as HTMLInputElement;
+                        fetchPosts(postType, titleElement?.value ?? '');
+                    }}
+                >
+                    Search
+                </button>
+            </div>
+            {loading ? (
+                <div>Loading...</div>
+            ) : data.length > 0 ? (
                 <div>
-
-                    <h1>Lastest {postType}</h1>
-                    <FormatPost data={data[0]} rerender={()=>setDeleteRender(deleteRender + 1)} view={view} token={token}/>
-                    
+                    <h1>Latest {postType}</h1>
+                    <FormatPost
+                        data={data[0]}
+                        rerender={() => setDeleteRender(deleteRender + 1)}
+                        view={view}
+                        token={token}
+                    />
                     <h1>Previous {postType}s</h1>
-                    {data.slice(1).map((e:any)=> 
-                        <FormatPost data={e} rerender={()=>setDeleteRender(deleteRender + 1)} view={view} token={token}/>
-                    )}
-                
+                    {data.slice(1).map((e: any) => (
+                        <FormatPost
+                            key={e.id}
+                            data={e}
+                            rerender={() => setDeleteRender(deleteRender + 1)}
+                            view={view}
+                            token={token}
+                        />
+                    ))}
                 </div>
-            :
-                <div className='posts-div'>
-                    <h1>No {postType} yet, try adding a {postType}!</h1>
+            ) : (
+                <div className="posts-div">
+                    <h1>No {postType} found. Try adding a {postType}!</h1>
                 </div>
-            }   
+            )}
         </>
-        
-        
     );
+    
 }

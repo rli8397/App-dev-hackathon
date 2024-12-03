@@ -22,7 +22,7 @@ export default function Homework({ token, view }: Props){
                       * The following statement will control the condition of whether
                       * it's student or teacher view
                       */}
-                    {view == 'Teacher' ? 
+                    {view == 'Admin' ? 
                         <AddPost postType="homework" token={token} rerenderTracker={rerenderTracker} handleRerender={handleRerender}/>
                     : 
                         <div></div>

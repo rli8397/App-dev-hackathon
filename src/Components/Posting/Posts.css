@@ -114,3 +114,20 @@
   cursor: pointer;
   z-index: 1;
 }
+
+
+#search-bar {
+  width: 90%;
+  background-color: transparent;
+  border: 2px solid black;
+  height: 2em;
+  padding: 0.5em;
+  color: white;
+}
+
+.search-posts-div > button {
+  height: 3em;
+  background-color: transparent;
+  margin-left: 1em;
+  color: white;
+}
