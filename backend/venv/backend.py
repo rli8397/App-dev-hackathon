@@ -88,6 +88,7 @@ def getRequest(columns: str, table: str, conditions: str = '', params: tuple = (
 
     finally:
         conn.close()
+        
 # returns a string with search conditions based on title, sender, and date 
 # this string will be used to put after a WHERE sql statement
 # will receive an array of objects

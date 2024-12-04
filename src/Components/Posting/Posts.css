@@ -114,6 +114,10 @@
   left: 0em;
   cursor: pointer;
   z-index: 1;
+  padding:1em;
+  display:flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #search-bar {
